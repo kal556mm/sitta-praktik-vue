@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SITTA - Tracking Delivery Order</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <header class="header-wrapper">
+        <div class="logo-section">
+          <img src="assets/logo-ut.png" alt="Logo UT" />
+        </div>
+        <div class="title-section">
+          <h1>SITTA</h1>
+          <p>
+            Sistem Informasi Tiras dan Transaksi Bahan Ajar - Universitas
+            Terbuka
+          </p>
+        </div>
+      </header>
+
+      <div class="nav-tabs">
+        <a href="index.html" class="nav-item"> Beranda Portal</a>
+        <a href="stok.html" class="nav-item">📦 Stok Bahan Ajar</a>
+        <a href="tracking.html" class="nav-item active"
+          >🚚 Tracking Delivery Order (DO)</a
+        >
+      </div>
+
+      <main class="fade-in">
+        <div class="card">
+          <h3>Buat & Tambah Input Delivery Order (DO) Baru</h3>
+          <div class="form-grid">
+            <div>
+              <label>Nomor DO (Tergenerate Otomatis):</label>
+              <input
+                type="text"
+                :value="generateNoDO"
+                readonly
+                style="
+                  background-color: #e9ecef;
+                  font-weight: bold;
+                  color: #003366;
+                "
+              />
+            </div>
+            <div>
+              <label>NIM Mahasiswa:</label>
+              <input
+                type="text"
+                v-model="formDO.nim"
+                placeholder="Masukkan NIM manual"
+              />
+            </div>
+            <div>
+              <label>Nama Mahasiswa:</label>
+              <input
+                type="text"
+                v-model="formDO.nama"
+                placeholder="Masukkan nama manual"
+              />
+            </div>
+            <div>
+              <label>Jenis Ekspedisi Kirim:</label>
+              <select v-model="formDO.ekspedisi">
+                <option value="">-- Pilih Ekspedisi --</option>
+                <option v-for="exp in pengirimanList" :value="exp.nama">
+                  {{ exp.nama }}
+                </option>
+              </select>
+            </div>
+            <div>
+              <label>Paket Bahan Ajar:</label>
+              <select v-model="formDO.paketKode">
+                <option value="">-- Pilih Paket Buku --</option>
+                <option v-for="pkt in paket" :value="pkt.kode">
+                  {{ pkt.kode }} - {{ pkt.nama }}
+                </option>
+              </select>
+            </div>
+            <div>
+              <label>Tanggal Kirim:</label>
+              <input type="date" v-model="formDO.tanggalKirim" />
+            </div>
+            <div>
+              <label>Total Harga Paket (Otomatis):</label>
+              <input
+                type="text"
+                :value="'Rp ' + formDO.totalHarga.toLocaleString('id-ID')"
+                readonly
+                style="background-color: #e9ecef; font-weight: bold"
+              />
+            </div>
+          </div>
+
+          <div
+            v-if="detailPaketTerpilih"
+            class="result-container"
+            style="
+              background: #fffde7;
+              border-left-color: #ffcc00;
+              margin-bottom: 20px;
+            "
+          >
+            <h4>
+              📋 Informasi Rincian Daftar Buku {{ detailPaketTerpilih.nama }}
+            </h4>
+            <p style="margin-top: 5px">
+              <strong>Daftar Kode Buku di Dalam Paket:</strong>
+            </p>
+            <ul style="margin-left: 20px; margin-top: 5px">
+              <li v-for="isiBuku in detailPaketTerpilih.isi" :key="isiBuku">
+                {{ isiBuku }}
+              </li>
+            </ul>
+          </div>
+
+          <button @click="tambahDO" class="track-btn-submit">
+            Proses & Terbitkan DO Baru
+          </button>
+        </div>
+
+        <div class="card">
+          <h3>🔍 Lacak Status Pendistribusian Paket</h3>
+          <div class="track-form">
+            <input
+              type="text"
+              v-model="cariDO"
+              class="search-input"
+              placeholder="Masukkan Nomor DO (Contoh: DO2025-0001)"
+            />
+            <button @click="lacakPaket" class="track-btn">Cek Status</button>
+          </div>
+
+          <div v-if="infoTracking" class="result-container">
+            <h3>Detail Pengiriman Paket</h3>
+            <div class="info-box" style="margin-top: 15px">
+              <p>
+                <strong>Nama Penerima Mahasiswa:</strong> {{ infoTracking.nama
+                }}
+              </p>
+              <p><strong>Nomor NIM:</strong> {{ infoTracking.nim }}</p>
+              <p>
+                <strong>Ekspedisi Kurir:</strong> {{ infoTracking.ekspedisi }}
+              </p>
+              <p>
+                <strong>Paket Pembelian:</strong> {{ infoTracking.paketKode ||
+                'PAKET-UT-001 (Default)' }}
+              </p>
+              <p>
+                <strong>Total Nilai Transaksi:</strong> Rp {{
+                (infoTracking.totalHarga || 120000).toLocaleString('id-ID') }}
+              </p>
+              <p>
+                <strong>Lokasi Terakhir Paket:</strong>
+                <span style="color: #003366; font-weight: 700"
+                  >{{ infoTracking.lokasi }}</span
+                >
+              </p>
+              <p style="font-size: 16px; margin-top: 10px">
+                <strong>Status Logistik Aktual:</strong>
+                <span style="color: #d35400; font-weight: bold"
+                  >{{ infoTracking.status }}</span
+                >
+              </p>
+            </div>
+            <div class="progress-container">
+              <div
+                class="progress-bar"
+                :style="{ width: progressWidth + '%' }"
+              ></div>
+            </div>
+          </div>
+
+          <div
+            v-else
+            class="empty-state"
+            style="text-align: center; margin-top: 20px"
+          >
+            <p>
+              Silakan masukkan nomor DO yang terdaftar untuk melacak pergerakan
+              paket.
+            </p>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="js/vue.min.js"></script>
+    <script src="js/tracking-app.js"></script>
+  </body>
+</html>

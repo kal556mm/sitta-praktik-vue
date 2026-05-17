@@ -41,7 +41,7 @@ var appTracking = new Vue({
         status: "Selesai",
         ekspedisi: "Ekspres (1-2 hari)",
         tanggalKirim: "2026-05-15",
-        lokasi: "UPBJJ-UT Bogor (Diterima Babinsa)",
+        lokasi: "UPBJJ-UT Bogor (Diterima)",
         paketKode: "PAKET-UT-002",
         totalHarga: 140000,
       },
@@ -103,9 +103,7 @@ var appTracking = new Vue({
         !f.paketKode ||
         !f.tanggalKirim
       ) {
-        alert(
-          "Izin Pak Bambang, mohon lengkapi seluruh kolom data pelacakan DO baru.",
-        );
+        alert("Mohon lengkapi seluruh kolom data pelacakan DO baru.");
         return;
       }
 
@@ -123,7 +121,7 @@ var appTracking = new Vue({
         totalHarga: f.totalHarga,
       });
 
-      alert("Sukses Pak! Nomor DO baru berhasil diterbitkan: " + noNewDO);
+      alert("Sukses! Nomor DO baru berhasil diterbitkan: " + noNewDO);
 
       // Reset Formulir kembali ke default
       this.formDO = {

@@ -162,9 +162,7 @@ var appStok = new Vue({
         f.qty === "" ||
         f.safety === ""
       ) {
-        alert(
-          "Izin Pak Bambang, mohon lengkapi seluruh kolom formulir data buku.",
-        );
+        alert("Mohon lengkapi seluruh kolom formulir data buku.");
         return;
       }
 

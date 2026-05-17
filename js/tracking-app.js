@@ -137,7 +137,7 @@ var appTracking = new Vue({
     lacakPaket: function () {
       var token = this.cariDO.trim();
       if (token === "") {
-        alert("Izin Pak, masukkan Nomor DO terlebih dahulu.");
+        alert("Mohon, masukkan Nomor DO terlebih dahulu.");
         return;
       }
 

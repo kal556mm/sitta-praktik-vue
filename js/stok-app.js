@@ -1,5 +1,3 @@
-// js/stok-app.js - Pusat Kontrol Inventaris Stok Bahan Ajar (Standardisasi Modul UT)
-
 var appStok = new Vue({
   el: "#app",
   data: {
@@ -151,7 +149,7 @@ var appStok = new Vue({
     tambahBuku: function () {
       var f = this.formBaru;
 
-      // Validasi input formulir sederhana sesuai kriteria modul
+      // Validasi input formulir sederhana
       if (
         !f.kode ||
         !f.judul ||

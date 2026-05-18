@@ -103,81 +103,6 @@
         </div>
 
         <div class="card">
-          <h3>📝 Input Tambah Stok Bahan Ajar Baru</h3>
-          <div class="form-grid">
-            <div>
-              <label>Kode Buku M.K:</label>
-              <input
-                type="text"
-                v-model="formBaru.kode"
-                placeholder="Contoh: STSI4209"
-              />
-            </div>
-            <div>
-              <label>Judul Mata Kuliah:</label>
-              <input
-                type="text"
-                v-model="formBaru.judul"
-                placeholder="Contoh: Pemrograman Berbasis Web"
-              />
-            </div>
-            <div>
-              <label>Kategori Modul Buku:</label>
-              <select v-model="formBaru.kategori">
-                <option value="">-- Pilih Kategori --</option>
-                <option v-for="kat in kategoriList" :value="kat">
-                  {{ kat }}
-                </option>
-              </select>
-            </div>
-            <div>
-              <label>Penempatan Wilayah UT:</label>
-              <select v-model="formBaru.upbjj">
-                <option value="">-- Pilih UT-Daerah --</option>
-                <option v-for="daerah in upbjjList" :value="daerah">
-                  {{ daerah }}
-                </option>
-              </select>
-            </div>
-            <div>
-              <label>Koordinat Lokasi Rak:</label>
-              <input
-                type="text"
-                v-model="formBaru.lokasiRak"
-                placeholder="Contoh: R1-A5"
-              />
-            </div>
-            <div>
-              <label>Harga Satuan Buku (Rp):</label>
-              <input
-                type="number"
-                v-model.number="formBaru.harga"
-                placeholder="Contoh: 50000"
-              />
-            </div>
-            <div>
-              <label>Jumlah Kuantitas Stok (Qty):</label>
-              <input
-                type="number"
-                v-model.number="formBaru.qty"
-                placeholder="Contoh: 100"
-              />
-            </div>
-            <div>
-              <label>Batas Minimum Safety Stock:</label>
-              <input
-                type="number"
-                v-model.number="formBaru.safety"
-                placeholder="Contoh: 15"
-              />
-            </div>
-          </div>
-          <button @click="tambahBuku" class="track-btn-submit">
-            Simpan ke Database Gudang
-          </button>
-        </div>
-
-        <div class="card">
           <h3>📋 Daftar Manajemen Inventaris Bahan Ajar</h3>
           <div class="table-responsive">
             <table>
@@ -259,6 +184,81 @@
               </tbody>
             </table>
           </div>
+        </div>
+
+        <div class="card">
+          <h3>📝 Input Tambah Stok Bahan Ajar Baru</h3>
+          <div class="form-grid">
+            <div>
+              <label>Kode Buku M.K:</label>
+              <input
+                type="text"
+                v-model="formBaru.kode"
+                placeholder="Contoh: STSI4209"
+              />
+            </div>
+            <div>
+              <label>Judul Mata Kuliah:</label>
+              <input
+                type="text"
+                v-model="formBaru.judul"
+                placeholder="Contoh: Pemrograman Berbasis Web"
+              />
+            </div>
+            <div>
+              <label>Kategori Modul Buku:</label>
+              <select v-model="formBaru.kategori">
+                <option value="">-- Pilih Kategori --</option>
+                <option v-for="kat in kategoriList" :value="kat">
+                  {{ kat }}
+                </option>
+              </select>
+            </div>
+            <div>
+              <label>Penempatan Wilayah UT:</label>
+              <select v-model="formBaru.upbjj">
+                <option value="">-- Pilih UT-Daerah --</option>
+                <option v-for="daerah in upbjjList" :value="daerah">
+                  {{ daerah }}
+                </option>
+              </select>
+            </div>
+            <div>
+              <label>Koordinat Lokasi Rak:</label>
+              <input
+                type="text"
+                v-model="formBaru.lokasiRak"
+                placeholder="Contoh: R1-A5"
+              />
+            </div>
+            <div>
+              <label>Harga Satuan Buku (Rp):</label>
+              <input
+                type="number"
+                v-model.number="formBaru.harga"
+                placeholder="Contoh: 50000"
+              />
+            </div>
+            <div>
+              <label>Jumlah Kuantitas Stok (Qty):</label>
+              <input
+                type="number"
+                v-model.number="formBaru.qty"
+                placeholder="Contoh: 100"
+              />
+            </div>
+            <div>
+              <label>Batas Minimum Safety Stock:</label>
+              <input
+                type="number"
+                v-model.number="formBaru.safety"
+                placeholder="Contoh: 15"
+              />
+            </div>
+          </div>
+          <button @click="tambahBuku" class="track-btn-submit">
+            Simpan ke Database Gudang
+          </button>
         </div>
       </main>
     </div>

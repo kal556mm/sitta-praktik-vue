@@ -1,5 +1,3 @@
-// js/tracking-app.js - Pusat Kontrol Penerbitan & Pelacakan DO Pengiriman (Standardisasi Modul UT)
-
 var appTracking = new Vue({
   el: "#app",
   data: {

@@ -34,7 +34,7 @@ var appTracking = new Vue({
       },
 
       "DO2025-0002": {
-        nim: "043219876",
+        nim: "052088423",
         nama: "Bambang Friantoro",
         status: "Selesai",
         ekspedisi: "Ekspres (1-2 hari)",

@@ -60,6 +60,7 @@ var appTracking = new Vue({
       totalHarga: 0,
     },
   },
+  // 1.4 Penggunaan Property computed
   computed: {
     // GENERATE NOMOR DO OTOMATIS: DO + Tahun Berjalan + Urutan Sequence 3 Digit
     generateNoDO: function () {
@@ -70,6 +71,7 @@ var appTracking = new Vue({
       return "DO" + tahun + "-" + strUrutan;
     },
   },
+  // 1.4 Implementasi Watchers
   watch: {
     // WATCHER 1: Mendeteksi perubahan pilihan paket untuk memunculkan detail isi buku & hitung harga otomatis
     "formDO.paketKode": function (newKode) {
@@ -89,11 +91,12 @@ var appTracking = new Vue({
       );
     },
   },
+  // 1.4 Penggunaan Property Methods
   methods: {
     tambahDO: function () {
       var f = this.formDO;
 
-      // Validasi input form sederhana
+      // 1.5 Validasi input form sederhana
       if (
         !f.nim ||
         !f.nama ||
@@ -121,7 +124,7 @@ var appTracking = new Vue({
 
       alert("Sukses! Nomor DO baru berhasil diterbitkan: " + noNewDO);
 
-      // Reset Formulir kembali ke default
+      // 1.5 Formulir Input Sederhana
       this.formDO = {
         nim: "",
         nama: "",

@@ -94,6 +94,7 @@ var appStok = new Vue({
       safety: "",
     },
   },
+  // 1.4 Penggunaan Property Computed
   computed: {
     // FILTER DATA REAL-TIME (Efisien, No Recompute Berulang)
     filterStok: function () {
@@ -128,6 +129,7 @@ var appStok = new Vue({
       return hasilData;
     },
   },
+  // 1.4 Implementasi Watchers
   watch: {
     // WATCHER 1: Sinkronisasi Dependent Options (Kategori otomatis reset jika daerah berubah)
     filterDaerah: function () {
@@ -138,6 +140,7 @@ var appStok = new Vue({
       console.log("Aktivitas Pencarian Reaktif: " + newVal);
     },
   },
+  // 1.4 Penggunaan Property Methods
   methods: {
     resetFilter: function () {
       this.cariStok = "";
@@ -149,7 +152,7 @@ var appStok = new Vue({
     tambahBuku: function () {
       var f = this.formBaru;
 
-      // Validasi input formulir sederhana
+      // 1.5 Validasi Sederhana
       if (
         !f.kode ||
         !f.judul ||
@@ -179,7 +182,7 @@ var appStok = new Vue({
 
       alert("Sukses! Data bahan ajar baru berhasil ditambahkan.");
 
-      // Reset isian formulir
+      // 1.5 Formulir Input Sederhana
       this.formBaru = {
         kode: "",
         judul: "",

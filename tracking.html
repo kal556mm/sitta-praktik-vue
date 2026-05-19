@@ -66,6 +66,7 @@
               <label>Jenis Ekspedisi Kirim:</label>
               <select v-model="formDO.ekspedisi">
                 <option value="">-- Pilih Ekspedisi --</option>
+                <!-- 1.2 Data Binding & Directive List Rendering -->
                 <option v-for="exp in pengirimanList" :value="exp.nama">
                   {{ exp.nama }}
                 </option>
@@ -133,7 +134,7 @@
             />
             <button @click="lacakPaket" class="track-btn">Cek Status</button>
           </div>
-
+          <!-- 1.2 Penggunaan Conditional / Percabangan Logika -->
           <div v-if="infoTracking" class="result-container">
             <h3>Detail Pengiriman Paket</h3>
             <div class="info-box" style="margin-top: 15px">
@@ -173,7 +174,7 @@
               ></div>
             </div>
           </div>
-
+          <!-- 1.2 Penggunaan Conditional / Percabangan Logika -->
           <div
             v-else
             class="empty-state"

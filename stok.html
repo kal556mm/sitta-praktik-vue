@@ -50,6 +50,7 @@
                 </option>
               </select>
             </div>
+            <!-- 1.3 Penggunaan Conditional / Percabangan Logika -->
             <div v-show="filterDaerah !== ''">
               <label>Filter Kategori Mata Kuliah:</label>
               <select v-model="filterKategori">
@@ -118,6 +119,7 @@
                 </tr>
               </thead>
               <tbody>
+                <!-- 1.2 Data Binding & Directive List Rendering -->
                 <tr v-for="buku in filterStok" :key="buku.kode">
                   <td style="font-weight: bold; color: #003366">
                     {{ buku.kode }}
@@ -155,6 +157,7 @@
                     />
                   </td>
                   <td>
+                    <!-- 1.2 Penggunaan Conditional / Percabangan Logika -->
                     <span v-if="buku.qty === 0" class="badge kosong"
                       >🔴 Kosong</span
                     >

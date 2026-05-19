@@ -133,7 +133,7 @@ var appStok = new Vue({
     filterDaerah: function () {
       this.filterKategori = "";
     },
-    // WATCHER 2: Memantau Log aktivitas kata kunci pencarian di konsol browser MacBook Bapak
+    // WATCHER 2: Memantau Log aktivitas kata kunci pencarian di konsol browser
     cariStok: function (newVal) {
       console.log("Aktivitas Pencarian Reaktif: " + newVal);
     },
